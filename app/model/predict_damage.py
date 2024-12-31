@@ -2,7 +2,7 @@ import tensorflow as tf
 from PIL import Image
 import numpy as np
 
-MODEL_PATH = 'model/resnet34_model.h5'  # Replace with the actual path to your model
+MODEL_PATH = 'model/resnet34_model.h5'
 IMAGE_SIZE = (256, 256)  
 # Load the model
 
@@ -22,7 +22,7 @@ def preprocess_image(image_path):
 def predict_damage(image_path):
     try:
         preprocessed_image = preprocess_image(image_path)
-        prediction = model.predict(preprocessed_image)[0]  # Assuming binary classification
+        prediction = model.predict(preprocessed_image)[0]
         classes = {0: 'not damaged', 1: 'damaged'}
         result = {
             "not damaged": float(prediction[0]),
@@ -30,6 +30,6 @@ def predict_damage(image_path):
         }
         return result
     except Exception as e:
-        print(f"Error in prediction: {e}")  # Debugging line
+        print(f"Error in prediction: {e}")
         raise
 
