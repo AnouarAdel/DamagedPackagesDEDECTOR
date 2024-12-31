@@ -2,12 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from werkzeug.utils import secure_filename
-from model.predict_damage import predict_damage 
-from model.predict_damage import predict_damage  # Adjust to your file's logic
-from tensorflow.keras.models import load_model
-
-
-
+from model.predict_damage import predict_damage
 
 app = Flask(__name__)
 CORS(app)  
@@ -18,8 +13,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 ALLOWED_EXTENSIONS = {'jpg', 'jpeg', 'png', 'gif'}
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
-
-model = load_model('app/model/resnet34_model.h5')
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

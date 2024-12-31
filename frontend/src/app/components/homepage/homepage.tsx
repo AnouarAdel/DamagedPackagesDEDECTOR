@@ -1,4 +1,4 @@
-'use client';
+'use client'
 import React, { useState } from 'react';
 import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
@@ -6,12 +6,14 @@ import { jsPDF } from 'jspdf';
 function Homepage() {
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [prediction, setPrediction] = useState<string | null>(null);
+  const [predictionDetails, setPredictionDetails] = useState<{ [key: string]: number } | null>(null); // To store the prediction details
   const [error, setError] = useState<string | null>(null);
   
   const handleImageSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setSelectedImage(event.target.files[0]);
       setPrediction(null); 
+      setPredictionDetails(null); 
       setError(null); 
     }
   };
@@ -36,7 +38,8 @@ function Homepage() {
       }
 
       const result = await response.json();
-      setPrediction(result.message); 
+      setPrediction(result.message);  // Show the damage status
+      setPredictionDetails(result.prediction); // Store the full prediction details
       setError(null); 
     } catch (err: any) {
       setError(err.message);
@@ -134,11 +137,13 @@ function Homepage() {
 
       {prediction && (
         <div id="report-content" className="result-section">
-          <h2 className="result-title">{prediction}</h2> {/* damage or normal detection*/ }
+          <h2 className="result-title">{prediction}</h2> {/* Damage or normal detection */ }
           <div className="result-content">
-          <div className="percentage">
-              <p className="percentage-label">Percentage</p>
-              <p className="percentage-value">86%</p>
+            <div className="percentage">
+              <p className="percentage-label">Confidence</p>
+              <p className="percentage-value">
+                {predictionDetails ? `${Math.max(...Object.values(predictionDetails)) * 100}%` : 'N/A'}
+              </p>
             </div>
 
             <div className="image-container">
@@ -153,8 +158,9 @@ function Homepage() {
           </div>
           <div className="description">
             <p>
-              The image shows a package with an 85% match for.
-              Please review the details carefully.
+              {prediction === "The package is damaged"
+                ? 'The image shows a damaged package. Please review the details carefully.'
+                : 'The package is not damaged.'}
             </p>
           </div>
           <button onClick={handleDownloadReport} className="upload-report-button">
