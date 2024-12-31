@@ -1,14 +1,29 @@
-The Damaged Packages Detector is an AI-powered web application designed to classify and predict whether a package is damaged based on uploaded images. It leverages deep learning models to analyze the visual features of package images and classify them as either damaged or not damaged. The app is built using Flask for the backend, and it employs a ResNet model for image classification.
+# Damaged Packages Detector
 
-Features
-Upload Images: Users can upload images of packages for damage detection.
-Damage Prediction: The system predicts whether a package is damaged or not based on the uploaded image.
-AI Model: Uses a pre-trained ResNet model to classify images.
-User-Friendly Interface: Simple web interface to easily upload images and get results.
-Technologies Used
-Frontend: nextjs, CSS, tailwindcss(with Flask template rendering)
-Backend: Python, Flask
-Machine Learning Model: ResNet-34 (Pre-trained model for damage classification)
-Model Storage: tensorflow for loading the machine learning model
-API: Flask-based REST API for handling requests and predictions
-Deployment: The application is ready to be deployed on a cloud platform such as Heroku, AWS, or DigitalOcean.
+The **Damaged Packages Detector** is an AI-driven web application that accurately classifies and predicts package conditions based on uploaded images. By leveraging cutting-edge deep learning models, this app ensures reliable detection of damaged packages to streamline logistics and quality control processes.
+
+This project was developed as part of the **InnovPost Hackathon 2024**, competing in the **Computer Vision/AI Track**.
+
+## Key Features
+- **Image Upload:** Users can effortlessly upload images of packages for damage evaluation.
+- **Damage Prediction:** Instantly predicts whether a package is damaged or intact based on the uploaded image.
+- **Advanced AI Model:** Powered by a pre-trained ResNet-34 model for high-accuracy image classification.
+- **Intuitive Interface:** A user-friendly web interface for seamless interaction and results display.
+
+## Technologies Used
+### Frontend:
+- **Next.js**: For a dynamic and responsive web application.
+- **CSS** and **TailwindCSS**: Styling to ensure a sleek, modern design (integrated with Flask template rendering).
+
+### Backend:
+- **Python** and **Flask**: A robust and lightweight backend framework for API and server-side logic.
+
+### Machine Learning Model:
+- **ResNet-34:** A pre-trained convolutional neural network tailored for damage classification tasks.
+- **TensorFlow:** For efficient model loading and prediction.
+
+### API:
+- **Flask-based REST API:** Handles requests and delivers precise damage predictions.
+
+### Deployment:
+- Ready for cloud platforms like **Heroku**, **AWS**, or **DigitalOcean**, enabling scalable and efficient operations.
